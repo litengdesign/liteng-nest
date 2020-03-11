@@ -43,13 +43,17 @@ export class UserService {
         }
    
         const pass = await entity.comparePassword(password);
-
-        // if (!pass) {
-        //     throw new BadRequestException('密码验证失败，请重新输入正确的密码。');
-        // }
+        
+        if (!pass) {
+            throw new BadRequestException('密码验证失败，请重新输入正确的密码。');
+        }
 
         entity.password = newPassword;
 
         return await this.userRepository.save(entity);
+    }
+    async findByName(name:string){
+        console.log(name);
+        return await this.userRepository.findOne({ name});
     }
 }

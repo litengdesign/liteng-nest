@@ -1,7 +1,7 @@
-import { Controller, Get, Body, Post, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Body, Post, Param, Delete, UseGuards } from '@nestjs/common';
 import { PostService} from './post.service';
 import { PostDto} from './post.dto';
-
+import { AuthGuard } from '@nestjs/passport';
 @Controller('posts')
 export class PostController {
     constructor(private readonly postServer: PostService){
@@ -26,6 +26,7 @@ export class PostController {
     async destory(@Param('id') id:string){
        return await this.postServer.destory(id);
     }
+
 
 
 }
