@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert, OneToMany } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import {Exclude} from 'class-transformer';
+import { Post } from '../post/post.entity';
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
@@ -18,7 +19,9 @@ export class User {
 
     @UpdateDateColumn()
     updated: Date;
-
+    
+    @OneToMany(type=> Post,post=>post.user)
+    posts:Post[]
     @BeforeInsert()
     async hashPassword(){
         this.password = await bcrypt.hash(this.password,12)

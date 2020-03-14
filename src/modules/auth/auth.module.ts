@@ -17,7 +17,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     }),
     PassportModule.register({
       defaultStrategy: 'jwt'
-    })
+    }),
+    PassportModule.register({ defaultStrategy: 'bearer' })
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy]

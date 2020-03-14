@@ -1,18 +1,23 @@
-import { Controller, Get, Body, Post, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Body, Post, Param, Delete, UseGuards, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { PostService} from './post.service';
 import { PostDto} from './post.dto';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard,PassportModule} from '@nestjs/passport';
+import {User} from '../../core/decorators/user.decorator'
+import { User as UserEntity} from '../user/user.entity';
+
 @Controller('posts')
 export class PostController {
     constructor(private readonly postServer: PostService){
 
     }
+    @UseGuards(AuthGuard('jwt'))
     @Post()
-    async store(@Body() data: PostDto){
-        return await this.postServer.store(data);
+    async store(@Body() data: PostDto, @User() user: UserEntity){
+        return await this.postServer.store(data,user);
     }
 
     @Get()
+    @UseInterceptors(ClassSerializerInterceptor)
     async index(){
         return await this.postServer.index();
     }

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Post } from './post.entity';
 import { PostDto} from './post.dto'
+import { User } from '../user/user.entity';
 
 
 @Injectable()
@@ -11,15 +12,20 @@ export class PostService {
        @InjectRepository(Post)
        private readonly postRepository:Repository<Post>
     ){}
-    async store(data:PostDto){
+    async store(data:PostDto,user:User){
         //创建实体
         const entity = await this.postRepository.create(data);
         //保存实体
-        await this.postRepository.save(entity);
+        await this.postRepository.save({
+            ...entity,
+            user
+        });
         return entity;
     }
     async index(){
-        const entities = await this.postRepository.find();
+        const entities = await this.postRepository.find({
+            relations:['user'] 
+        });
         return entities;
     }
     async show(id:string){
