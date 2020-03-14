@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Post } from './post.entity';
 import { PostDto} from './post.dto'
 import { User } from '../user/user.entity';
+import { ListOptionsInterface } from '../../core/interfaces/list-options.interface';
 
 
 @Injectable()
@@ -22,19 +23,19 @@ export class PostService {
         });
         return entity;
     }
-    async index(categories:string){
+    async index(options:ListOptionsInterface){
+        const { categories,page,limit } =  options;
         const queryBuilder = await this.postRepository.createQueryBuilder('post');
         queryBuilder.leftJoinAndSelect('post.user','user');
         queryBuilder.leftJoinAndSelect('post.category', 'category');
-
-        //         const entities = await this.postRepository.find({
-        //     relations:['user','category'] 
-        // });
-        // return entities;
+        queryBuilder
+        .take(limit)
+        .skip(limit * (page-1))
         if (categories){
-            queryBuilder.where('category.alias = :categories', { categories})
+            queryBuilder.where('category.alias IN (:...categories)', { categories})
         }
-        const entities = queryBuilder.getMany();
+        
+        const entities = queryBuilder.getManyAndCount();
         return entities;
 
     }
