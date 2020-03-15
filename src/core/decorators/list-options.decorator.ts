@@ -1,5 +1,5 @@
 import { createParamDecorator } from "@nestjs/common";
-import { ListOptionsInterface } from "dist/core/interfaces/list-options.interface";
+import { ListOptionsInterface } from "../../core/interfaces/list-options.interface";
 
 export const ListOptions = createParamDecorator((data:Partial<ListOptionsInterface> = {}, req) => {
     let {categories,page,limit} = req.query;

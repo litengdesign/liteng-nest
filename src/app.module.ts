@@ -7,6 +7,10 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './modules/category/category.module';
+import { FileController } from './modules/file/file.controller';
+import { FileService } from './modules/file/file.service';
+import { FileModule } from './modules/file/file.module';
+import { FileTestModule } from './modules/file-test/file-test.module';
 
 
 
@@ -18,8 +22,10 @@ import { CategoryModule } from './modules/category/category.module';
     UserModule,
     AuthModule,
     CategoryModule,
+    FileModule,
+    FileTestModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, FileController],
+  providers: [AppService, FileService],
 })
 export class AppModule {}

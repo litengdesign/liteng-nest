@@ -16,6 +16,7 @@ export class UserController {
     async show(@Param('id') id:string){
         return await this.userServer.show(id)
     }
+    
     @Put(':id/password')
     @UseInterceptors(ClassSerializerInterceptor)
     async updatePassword(@Param('id') id:string,@Body() data:UpdatePasswordDto){
