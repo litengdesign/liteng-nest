@@ -14,7 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
  * @Description: Description
  * @Date: 2020-11-08 10:51:32
  * @LastEditors: Liteng
- * @LastEditTime: 2020-11-15 19:31:57
+ * @LastEditTime: 2020-11-15 19:35:29
  */
 
 @Module({
