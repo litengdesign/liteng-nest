@@ -18,12 +18,12 @@ export class PostController {
     }
 
     @Get(':id')
-    async show(@Param('id') id:string,@Body() data:Partial<PostDto>){
+    async show(@Param('id') id: string, @Body() data: Partial<PostDto>){
         return await this.postServer.update(id,data);
     }
 
     @Delete(':id')
-    async destory(@Param('id') id:string){
+    async destory(@Param('id') id: string){
        return await this.postServer.destory(id);
     }
 
