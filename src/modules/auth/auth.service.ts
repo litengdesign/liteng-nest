@@ -3,9 +3,9 @@
  * @Description: Description
  * @Date: 2020-11-15 17:46:49
  * @LastEditors: Liteng
- * @LastEditTime: 2020-11-15 19:25:06
+ * @LastEditTime: 2020-11-15 19:32:21
  */
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service'
 import { LoginDto } from './auth.dto';
 import { JwtPayload } from './auth.interface';

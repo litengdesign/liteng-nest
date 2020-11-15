@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { JwtService} from '@nestjs/jwt';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -15,7 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
  * @Description: Description
  * @Date: 2020-11-08 10:51:32
  * @LastEditors: Liteng
- * @LastEditTime: 2020-11-15 19:24:22
+ * @LastEditTime: 2020-11-15 19:31:57
  */
 
 @Module({
@@ -34,7 +33,6 @@ import { AuthModule } from './modules/auth/auth.module';
     PostModule,
     UserModule,
     AuthModule,
-    JwtService
   ],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService],
