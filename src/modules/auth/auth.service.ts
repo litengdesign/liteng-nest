@@ -3,7 +3,7 @@
  * @Description: Description
  * @Date: 2020-11-15 17:46:49
  * @LastEditors: Liteng
- * @LastEditTime: 2020-11-15 19:25:06
+ * @LastEditTime: 2020-11-15 19:51:18
  */
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service'
@@ -15,7 +15,7 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
     constructor(
         private readonly userService:UserService,
-        private readonly jwtService: JwtService
+        // private readonly jwtService: JwtService
     ){}
     
     async login(data:LoginDto){
@@ -27,17 +27,18 @@ export class AuthService {
        if(!(await entity.comparePassword(password))){
         throw new UnauthorizedException('密码不匹配！')
        }
-       const { id } = entity;
-       const payload = {id,name};
-       const token = this.signToken(payload);
-       return {
-           ...payload,
-           token
-       };
+       return entity;
+    //    const { id } = entity;
+    //    const payload = {id,name};
+    //    const token = this.signToken(payload);
+    //    return {
+    //        ...payload,
+    //        token
+    //    };
     }
 
-    signToken(data:JwtPayload){
-        return this.jwtService.sign(data);   
-    }
+    // signToken(data:JwtPayload){
+    //     return this.jwtService.sign(data);   
+    // }
 
 }

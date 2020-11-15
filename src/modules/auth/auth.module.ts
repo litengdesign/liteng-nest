@@ -3,7 +3,7 @@
  * @Description: Description
  * @Date: 2020-11-15 17:47:32
  * @LastEditors: Liteng
- * @LastEditTime: 2020-11-15 18:54:17
+ * @LastEditTime: 2020-11-15 19:53:03
  */
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt'
@@ -15,7 +15,7 @@ import { AuthService } from './auth.service';
     imports:[
         UserModule,
         JwtModule.register({
-        secretOrPrivateKey: 'dasdfasdfasdfseweuwrewhwjw',
+        secretOrPrivateKey: 'dtvbnjsdhauhdfabsidhdkaji#',
         signOptions:{
             expiresIn:'12h' //签发jwt有效期
         }
