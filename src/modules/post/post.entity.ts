@@ -6,11 +6,11 @@
  * @LastEditTime: 2020-11-08 20:50:37
  */
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-
 @Entity()
 export class Post {
     @PrimaryGeneratedColumn()
     id: number;
+
 
     @Column()
     title: string;

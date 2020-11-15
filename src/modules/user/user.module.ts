@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * @Author: Liteng
  * @Description: 用户module
@@ -10,13 +11,20 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity';
+=======
+import { Module } from '@nestjs/common';
+import { UserController } from './user.controller';
+import { UserService } from './user.service';
+import { TypeOrmModule} from '@nestjs/typeorm';
+import { User } from './user.entity'
+>>>>>>> ebd776f05764638d05f85606d3da5596c9e3502f
 
 @Module({
-  imports: [
+  imports:[
     TypeOrmModule.forFeature([User])
   ],
   controllers: [UserController],
   providers: [UserService],
-  exports: [UserService]
+  exports:[UserService]
 })
 export class UserModule {}
